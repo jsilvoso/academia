@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.academia</groupId>
-	<artifactId>Academia</artifactId>
+	<artifactId>AcademiaSilvoso</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Academia</name>
+	<name>AcademiaSilvoso</name>
 	<description>Proyecto academia</description>
 
 	<properties>
