@@ -24,7 +24,7 @@ public class AcademiaController {
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model) {
-		model.addAttribute("estudiantes", alumnoDao.findAll());
+		model.addAttribute("alumno", new Alumno());
 		return "index";
 	}
 
