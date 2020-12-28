@@ -39,7 +39,7 @@ public class AlumnoController {
 
 		alumnoDao.save(alumno);
 		model.addAttribute("estudiantes", alumnoDao.findAll());
-		return "index";
+		return "listado-alumno";
 	}
 
 	@GetMapping("editar/{id}")
@@ -60,7 +60,7 @@ public class AlumnoController {
 
 		alumnoDao.save(alumno);
 		model.addAttribute("estudiantes", alumnoDao.findAll());
-		return "index";
+		return "listado-alumno";
 	}
 
 	@GetMapping("borrar/{id}")
@@ -69,7 +69,7 @@ public class AlumnoController {
 				.orElseThrow(() -> new IllegalArgumentException("Id Alumno erroneo:" + id));
 		alumnoDao.delete(alumno);
 		model.addAttribute("estudiantes", alumnoDao.findAll());
-		return "index";
+		return "listado-alumno";
 	}
 
 }
