@@ -23,6 +23,8 @@ public class Alumno {
 		@NotBlank(message = "El email no puede ser vacio")
 		@Column(name = "email")
 		private String email;
+		
+		private String telefono;
 
 		public long getId() {
 			return id;
