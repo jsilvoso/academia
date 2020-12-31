@@ -11,16 +11,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.academia.Academia.dao.AlumnoDao;
 import com.academia.Academia.dao.beans.Alumno;
+import com.academia.Academia.dao.ProfesorDao;
+import com.academia.Academia.dao.beans.Profesor;
+import com.academia.Academia.dao.AdministradorDao;
+import com.academia.Academia.dao.beans.Administrador;
 
 @Controller
 public class AcademiaController {
 
 	private final AlumnoDao alumnoDao;
+	//private final ProfesorDao profesorDao;
+	//private final AdministradorDao administradorDao;
 
 	@Autowired
 	public AcademiaController(AlumnoDao alumnoDao) {
 		this.alumnoDao = alumnoDao;
 	}
+	/*public AcademiaController(ProfesorDao profesorDao) {
+		this.profesorDao = profesorDao;
+	}
+	public AcademiaController(AdministradorDao administradorDao) {
+		this.administradorDao = administradorDao;
+	}*/
+	
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model) {

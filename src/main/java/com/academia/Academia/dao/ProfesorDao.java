@@ -8,5 +8,5 @@ import com.academia.Academia.dao.beans.Profesor;
 
 public interface ProfesorDao extends CrudRepository<Profesor, Long> {
 
-	Profesor findByUsuarioandClave(String usuario, String clave);
+	Profesor findByUsuarioAndClave(String usuario, String clave);
 }

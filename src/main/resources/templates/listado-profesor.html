@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<a th:href="@{/profesor/registro}">Insertar Profesor</a>
+	<br>
+	<div th:switch="${docentes}">
+		<h2 th:case="null">No hay profesores</h2>
+		<div th:case="*">
+			<table>
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Nombre</td>
+						<td>Email</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="profesor:${docentes}">
+						<td th:text="${profesor.id}"></td>
+						<td th:text="${profesor.nombre}"></td>
+						<td th:text="${profesor.email}"></td>
+						<td><a th:href="@{/profesor/editar/{id}(id=${profesor.id})}">Actualizar Profesor</a></td>
+						<td><a th:href="@{/profesor/borrar/{id}(id=${profesor.id})}">Borrar Profesor</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</body>
+</html>

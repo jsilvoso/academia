@@ -1,0 +1,17 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<h2>Insertar profesor</h2>
+	<form action="#" th:action="@{/alumno/insertar}" th:object="${profesor}"
+		method="post">
+		Nombre<input type="text" th:field="*{nombre}" id="nombre"><span
+			th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+			style="color: red"></span><br>
+		Email<input type="text" th:field="*{email}" id="email"><span
+			th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+			style="color: red"></span><br>
+		<input type="submit" value="Insertar profesor">
+	</form>
+</body>
+</html>
