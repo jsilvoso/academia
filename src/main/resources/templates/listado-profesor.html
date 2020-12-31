@@ -20,8 +20,10 @@
 						<td th:text="${profesor.id}"></td>
 						<td th:text="${profesor.nombre}"></td>
 						<td th:text="${profesor.email}"></td>
-						<td><a th:href="@{/profesor/editar/{id}(id=${profesor.id})}">Actualizar Profesor</a></td>
-						<td><a th:href="@{/profesor/borrar/{id}(id=${profesor.id})}">Borrar Profesor</a></td>
+						<td><a th:href="@{/profesor/editar/{id}(id=${profesor.id})}">Actualizar
+								Profesor</a></td>
+						<td><a th:href="@{/profesor/borrar/{id}(id=${profesor.id})}">Borrar
+								Profesor</a></td>
 					</tr>
 				</tbody>
 			</table>

@@ -25,6 +25,8 @@ public class Curso {
 	@NotBlank(message = "El nombre no puede ser vacio")
 	@Column(name = "nombre")
 	private String nombre;
+	
+	private String horario;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Profesor profesor;
@@ -77,6 +79,14 @@ public class Curso {
 
 	public void setAlumnos(List<Alumno> alumnos) {
 		this.alumnos = alumnos;
+	}
+
+	public String getHorario() {
+		return horario;
+	}
+
+	public void setHorario(String horario) {
+		this.horario = horario;
 	}
 
 }
