@@ -25,4 +25,50 @@ public class CursoController {
 		this.cursoDao = cursoDao;
 	}
 	
+	@GetMapping("registro")
+	public String verRegistro(Curso curso) {
+		return "insertar-alumno";
+	}
+
+	@PostMapping("insertar")
+	public String insertarCurso(@Valid Curso curso, BindingResult resultado, Model model) {
+		if (resultado.hasErrors()) {
+			return "insertar-curso";
+		}
+
+		cursoDao.save(curso);
+		model.addAttribute("cursos", cursoDao.findAll());
+		return "listado-curso";
+	}
+	
+	@GetMapping("editar/{id}")
+	public String visualizarFormulario(@PathVariable("id") long id, Model model) {
+		Curso curso = cursoDao.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Id Curso erroneo:" + id));				
+		model.addAttribute("curso", curso);
+		return "actualizar-curso";
+	}
+	
+	@PostMapping("actualizar/{id}")
+	public String actualizarCurso(@PathVariable("id") long id, @Valid Curso curso, BindingResult resultado,
+			Model model) {
+		if (resultado.hasErrors()) {
+			curso.setId(id);
+			return "actualizar-curso";
+		}
+
+		cursoDao.save(curso);
+		model.addAttribute("cursos", cursoDao.findAll());
+		return "listado-curso";
+	}
+	
+	@GetMapping("borrar/{id}")
+	public String borrarCurso(@PathVariable("id") long id, Model model) {
+		Curso curso = cursoDao.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Id Curso erroneo:" + id));
+		cursoDao.delete(curso);
+		model.addAttribute("cursos", cursoDao.findAll());
+		return "listado-curso";
+	}
+	
 }
