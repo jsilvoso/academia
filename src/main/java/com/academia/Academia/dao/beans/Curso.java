@@ -26,6 +26,7 @@ public class Curso {
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@Column(name = "horario")
 	private String horario;
 
 	@ManyToOne(fetch = FetchType.LAZY)

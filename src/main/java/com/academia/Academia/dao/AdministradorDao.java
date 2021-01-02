@@ -8,5 +8,5 @@ import com.academia.Academia.dao.beans.Administrador;
 
 public interface AdministradorDao extends CrudRepository<Administrador, Long> {
 	
-	Administrador findByUsuarioandClave(String usuario, String clave);
+	//Administrador findByUsuarioandClave(String usuario, String clave);
 }

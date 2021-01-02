@@ -20,24 +20,27 @@ import com.academia.Academia.dao.beans.Administrador;
 public class AcademiaController {
 
 	private final AlumnoDao alumnoDao;
-	//private final ProfesorDao profesorDao;
-	//private final AdministradorDao administradorDao;
+//	private final ProfesorDao profesorDao;
+//	private final AdministradorDao administradorDao;
 
 	@Autowired
 	public AcademiaController(AlumnoDao alumnoDao) {
 		this.alumnoDao = alumnoDao;
 	}
-	/*public AcademiaController(ProfesorDao profesorDao) {
+	/*
+	public AcademiaController(ProfesorDao profesorDao) {
 		this.profesorDao = profesorDao;
 	}
 	public AcademiaController(AdministradorDao administradorDao) {
 		this.administradorDao = administradorDao;
-	}*/
-	
+	}
+	*/
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model) {
 		model.addAttribute("alumno", new Alumno());
+		model.addAttribute("profesor", new Profesor());
+		model.addAttribute("administrador", new Administrador());
 		return "index";
 	}
 
@@ -45,7 +48,9 @@ public class AcademiaController {
 	public String login(@Valid Alumno alumno, BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
 			Alumno alumnoT = alumnoDao.findByUsuarioAndClave(alumno.getUsuario(), alumno.getClave());
-			if (alumnoT == null) {
+//			Profesor profesorT = profesorDao.findByUsuarioAndClave(profesor.getUsuario(), profesor.getClave());
+//			Administrador administradorT = administradorDao.findByUsuarioandClave(administrador.getUsuario(), administrador.getClave());
+			if (alumnoT == null /* || profesorT == null || administradorT == null*/) {
 				return "index";
 			} else {
 				model.addAttribute("alumno", alumnoT);
