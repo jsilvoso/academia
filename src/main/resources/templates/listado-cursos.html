@@ -3,9 +3,9 @@
 </head>
 <body>
 	<h2>Listado cursos</h2>
-	<a th:href="@{/alumno/registro}">Insertar Curso</a>
+	<a th:href="@{/curso/registro}">Insertar Curso</a>
 	<br>
-	<div th:switch="${estudiantes}">
+	<div th:switch="${cursos}">
 		<h2 th:case="null">No hay cursos</h2>
 		<div th:case="*">
 			<table>
@@ -28,6 +28,31 @@
 			</table>
 		</div>
 	</div>
-
+<br>
+	<h2>Listado Alumnos</h2>
+	<a th:href="@{/alumno/registro}">Insertar Alumno</a>
+	<div th:switch="${estudiantes}">
+		<h2 th:case="null">No hay alumnos</h2>
+		<div th:case="*">
+			<table>
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Nombre</td>
+						<td>Email</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="alumno:${estudiantes}">
+						<td th:text="${alumno.id}"></td>
+						<td th:text="${alumno.nombre}"></td>
+						<td th:text="${alumno.email}"></td>
+						<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar Alumno</a></td>
+						<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar Alumno</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

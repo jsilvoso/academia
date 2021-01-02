@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Insertar Curos</title>
+</head>
+<body>
+	<h2>Insertar curso</h2>
+	<form action="#" th:action="@{/curso/insertar}" th:object="${curso}"
+		method="post">
+		Nombre<input type="text" th:field="*{nombre}" id="nombre"><span
+			th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
+			style="color: red"></span><br>
+		Horario<input type="text" th:field="*{horario}" id="horario"><span
+			th:if="${#fields.hasErrors('email')}" th:errors="*{horario}"
+			style="color: red"></span><br>
+		<input type="submit" value="Insertar curso">
+	</form>
+</body>
+</html>
