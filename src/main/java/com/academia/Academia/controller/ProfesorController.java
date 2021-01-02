@@ -34,7 +34,7 @@ public class ProfesorController {
 	@PostMapping("insertar")
 	public String insertarProfesor(@Valid Profesor profesor, BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
-			return "insertar-profesor";
+			return "listado-profesor";
 		}
 
 		profesorDao.save(profesor);

@@ -3,7 +3,7 @@
 </head>
 <body>
 	<h2>Insertar profesor</h2>
-	<form action="#" th:action="@{/alumno/insertar}"
+	<form action="#" th:action="@{/profesor/insertar}"
 		th:object="${profesor}" method="post">
 		Nombre<input type="text" th:field="*{nombre}" id="nombre"><span
 			th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"

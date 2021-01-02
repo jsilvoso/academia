@@ -4,7 +4,7 @@
 <body>
 	<a th:href="@{/profesor/registro}">Insertar Profesor</a>
 	<br>
-	<div th:switch="${docentes}">
+	<div th:switch="${profesor}">
 		<h2 th:case="null">No hay profesores</h2>
 		<div th:case="*">
 			<table>
@@ -16,7 +16,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="profesor:${docentes}">
+					<tr th:each="profesor:${ profesor}">
 						<td th:text="${profesor.id}"></td>
 						<td th:text="${profesor.nombre}"></td>
 						<td th:text="${profesor.email}"></td>

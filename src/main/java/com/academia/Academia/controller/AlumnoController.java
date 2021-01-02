@@ -34,7 +34,7 @@ public class AlumnoController {
 	@PostMapping("insertar")
 	public String insertarAlumno(@Valid Alumno alumno, BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
-			return "insertar-alumno";
+			return "listado-alumno";
 		}
 
 		alumnoDao.save(alumno);

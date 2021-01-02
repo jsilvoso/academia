@@ -27,7 +27,7 @@ public class CursoController {
 	
 	@GetMapping("registro")
 	public String verRegistro(Curso curso) {
-		return "insertar-alumno";
+		return "insertar-curso";
 	}
 
 	@PostMapping("insertar")
