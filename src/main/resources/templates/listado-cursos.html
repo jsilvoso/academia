@@ -5,10 +5,14 @@
 <h2>Listado profesores</h2>
 	<a th:href="@{/profesor/registro}">Insertar profesor</a>
 	<br>
-	<h2>Listado cursos</h2>
+	<div th:switch="${profesores}">
+		<h2 th:case="null">No hay profesores</h2>
+		<br>
+	</div>
+<h2>Listado cursos</h2>
 	<a th:href="@{/curso/registro}">Insertar Curso</a>
 	<br>
-	<div th:switch="${cursos}">
+	<div th:switch="${curso}">
 		<h2 th:case="null">No hay cursos</h2>
 		<div th:case="*">
 			<table>
@@ -16,16 +20,16 @@
 					<tr>
 						<td>Id</td>
 						<td>Nombre</td>
-						<td>Email</td>
+						<td>Horario</td>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="alumno:${estudiantes}">
-						<td th:text="${alumno.id}"></td>
-						<td th:text="${alumno.nombre}"></td>
-						<td th:text="${alumno.email}"></td>
-						<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar Alumno</a></td>
-						<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar Alumno</a></td>
+					<tr th:each="curso:${curso}">
+						<td th:text="${curso.id}"></td>
+						<td th:text="${curso.nombre}"></td>
+						<td th:text="${curso.horario}"></td>
+						<td><a th:href="@{/curso/editar/{id}(id=${curso.id})}">Actualizar Curso</a></td>
+						<td><a th:href="@{/curso/borrar/{id}(id=${curso.id})}">Borrar Curso</a></td>
 					</tr>
 				</tbody>
 			</table>
@@ -34,7 +38,7 @@
 <br>
 	<h2>Listado Alumnos</h2>
 	<a th:href="@{/alumno/registro}">Insertar Alumno</a>
-	<div th:switch="${estudiantes}">
+	<div th:switch="${alumno}">
 		<h2 th:case="null">No hay alumnos</h2>
 		<div th:case="*">
 			<table>
@@ -46,7 +50,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="alumno:${estudiantes}">
+					<tr th:each="alumno : ${alumno}">
 						<td th:text="${alumno.id}"></td>
 						<td th:text="${alumno.nombre}"></td>
 						<td th:text="${alumno.email}"></td>
@@ -57,5 +61,15 @@
 			</table>
 		</div>
 	</div>
+	
+	
+	<div th:each="curso : ${curso}">
+						<div th:text="${curso.id}"></div>
+	</div>
+	
+	<div th:each="profesor : ${profesor}">
+						<div th:text="${profesor.id}"></div>
+	</div>
+	
 </body>
 </html>

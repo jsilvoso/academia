@@ -55,7 +55,7 @@ public class AlumnoController {
 			Model model) {
 		if (resultado.hasErrors()) {
 			alumno.setId(id);
-			return "actualizar-alumno";
+			return "listado-alumno";
 		}
 
 		alumnoDao.save(alumno);

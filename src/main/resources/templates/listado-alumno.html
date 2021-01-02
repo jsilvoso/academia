@@ -5,7 +5,7 @@
 	<h2>Listado Alumnos</h2>
 	<a th:href="@{/alumno/registro}">Insertar Alumno</a>
 	<br>
-	<div th:switch="${estudiantes}">
+	<div th:switch="${alumno}">
 		<h2 th:case="null">No hay alumnos</h2>
 		<div th:case="*">
 			<table>
@@ -17,7 +17,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="alumno:${estudiantes}">
+					<tr th:each="alumno:${alumno}">
 						<td th:text="${alumno.id}"></td>
 						<td th:text="${alumno.nombre}"></td>
 						<td th:text="${alumno.email}"></td>
