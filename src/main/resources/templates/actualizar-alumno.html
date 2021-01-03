@@ -13,5 +13,28 @@
 			style="color: red"></span><br>
 		<input type="submit" value="actualizar alumno">
 	</form>
+	<br>
+	<div th:switch="${alumnos}">
+		<h3 th:case="null">No hay alumnos</h3>
+		<div th:case="*">
+			<table>
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Nombre</td>
+						<td>Email</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="alumno : ${alumnos}">
+						<td th:text="${alumno.id}"></td>
+						<td th:text="${alumno.nombre}"></td>
+						<td th:text="${alumno.email}"></td>
+						<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar Alumno</a></td>
+						<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar Alumno</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 </body>
 </html>

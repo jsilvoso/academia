@@ -3,7 +3,7 @@
 </head>
 <body>
 	<h2>Insertar alumno</h2>
-	<form action="#" th:action="@{/alumno/insertar}" th:object="${alumno}"
+	<form action="#" th:action="@{/alumno/insertar}" th:object="${alumnos}"
 		method="post">
 		Nombre<input type="text" th:field="*{nombre}" id="nombre"><span
 			th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
@@ -13,5 +13,28 @@
 			style="color: red"></span><br>
 		<input type="submit" value="Insertar alumno">
 	</form>
+	<br>
+	<div th:switch="${alumno}">
+		<h3 th:case="null">No hay alumnos</h3>
+		<div th:case="*">
+			<table>
+				<thead>
+					<tr>
+						<td>Id</td>
+						<td>Nombre</td>
+						<td>Email</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="alumno : ${alumnos}">
+						<td th:text="${alumno.id}"></td>
+						<td th:text="${alumno.nombre}"></td>
+						<td th:text="${alumno.email}"></td>
+						<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar Alumno</a></td>
+						<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar Alumno</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 </body>
 </html>

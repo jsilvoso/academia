@@ -15,7 +15,7 @@ import com.academia.Academia.dao.CursoDao;
 import com.academia.Academia.dao.beans.Curso;
 
 @Controller
-@RequestMapping("/curso/")
+@RequestMapping("/cursos/")
 public class CursoController {
 
 	private final CursoDao cursoDao;

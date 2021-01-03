@@ -21,19 +21,16 @@ public class AcademiaController {
 
 	private final AlumnoDao alumnoDao;
 	private final ProfesorDao profesorDao;
-//	private final AdministradorDao administradorDao;
+	private final AdministradorDao administradorDao;
 
 	@Autowired
-	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao) {
+	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao, AdministradorDao administradorDao) {
 		this.alumnoDao = alumnoDao;
 		this.profesorDao = profesorDao;
-	}
-
-	/*
-	public AcademiaController(AdministradorDao administradorDao) {
 		this.administradorDao = administradorDao;
 	}
-	*/
+
+	
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model) {
