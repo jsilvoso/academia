@@ -15,6 +15,8 @@ import com.academia.Academia.dao.ProfesorDao;
 import com.academia.Academia.dao.beans.Profesor;
 import com.academia.Academia.dao.AdministradorDao;
 import com.academia.Academia.dao.beans.Administrador;
+import com.academia.Academia.dao.CursoDao;
+import com.academia.Academia.dao.beans.Curso;
 
 @Controller
 public class AcademiaController {
@@ -22,12 +24,15 @@ public class AcademiaController {
 	private final AlumnoDao alumnoDao;
 	private final ProfesorDao profesorDao;
 	private final AdministradorDao administradorDao;
+	private final CursoDao cursoDao;
 
 	@Autowired
-	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao, AdministradorDao administradorDao) {
+	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao
+			, AdministradorDao administradorDao, CursoDao cursoDao) {
 		this.alumnoDao = alumnoDao;
 		this.profesorDao = profesorDao;
 		this.administradorDao = administradorDao;
+		this.cursoDao = cursoDao;
 	}
 
 	
@@ -46,11 +51,13 @@ public class AcademiaController {
 			Alumno alumnoT = alumnoDao.findByUsuarioAndClave(alumno.getUsuario(), alumno.getClave());
 //			Profesor profesorT = profesorDao.findByUsuarioAndClave(profesor.getUsuario(), profesor.getClave());
 //			Administrador administradorT = administradorDao.findByUsuarioandClave(administrador.getUsuario(), administrador.getClave());
+			Curso cursoT = cursoDao.findByNombre(curso.getCurso());
+			
 			if ((alumnoT == null) /*&& (profesorT == null) && administradorT == null*/) {
 				return "index";
 			} else {
-				model.addAttribute("alumno", alumnoT);
-				
+				model.addAttribute("alumnos", alumnoT);
+				model.addAttribute("curso", cursoT);
 				return "listado-cursos";
 			}
 		} else {
