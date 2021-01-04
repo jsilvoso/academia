@@ -9,6 +9,4 @@ import com.academia.Academia.dao.beans.Alumno;
 public interface AlumnoDao extends CrudRepository<Alumno, Long> {
 	
 	Alumno findByUsuarioAndClave(String usuario, String clave);
-
-	
 }

@@ -46,18 +46,22 @@ public class AcademiaController {
 	}
 
 	@PostMapping("/academia/login")
-	public String login(@Valid Alumno alumno, /*@Valid Profesor profesor,*/ BindingResult resultado, Model model) {
+	public String login(@Valid Alumno alumno,  /*@Valid Profesor profesor,*/ BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
 			Alumno alumnoT = alumnoDao.findByUsuarioAndClave(alumno.getUsuario(), alumno.getClave());
-//			Profesor profesorT = profesorDao.findByUsuarioAndClave(profesor.getUsuario(), profesor.getClave());
+			
+			//			Profesor profesorT = profesorDao.findByUsuarioAndClave(profesor.getUsuario(), profesor.getClave());
 //			Administrador administradorT = administradorDao.findByUsuarioandClave(administrador.getUsuario(), administrador.getClave());
-			Curso cursoT = cursoDao.findByNombre(curso.getCurso());
+//			Curso cursoT = cursoDao.findByNombre(curso.getCurso());
 			
 			if ((alumnoT == null) /*&& (profesorT == null) && administradorT == null*/) {
-				return "index";
+				alumnoT = profesorDao.findByUsuarioAndClave(profesor..getUsuario(), profesor.getClave());
+				if ((alumnoT == null)) {
+					return "index";
+				}
 			} else {
 				model.addAttribute("alumnos", alumnoT);
-				model.addAttribute("curso", cursoT);
+	//			model.addAttribute("curso", cursoT);
 				return "listado-cursos";
 			}
 		} else {
