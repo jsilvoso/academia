@@ -27,15 +27,13 @@ public class AcademiaController {
 	private final CursoDao cursoDao;
 
 	@Autowired
-	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao
-			, AdministradorDao administradorDao, CursoDao cursoDao) {
+	public AcademiaController(AlumnoDao alumnoDao, ProfesorDao profesorDao, AdministradorDao administradorDao,
+			CursoDao cursoDao) {
 		this.alumnoDao = alumnoDao;
 		this.profesorDao = profesorDao;
 		this.administradorDao = administradorDao;
 		this.cursoDao = cursoDao;
 	}
-
-	
 
 	@GetMapping(value = { "/", "/index" })
 	public String index(Model model) {
@@ -46,22 +44,26 @@ public class AcademiaController {
 	}
 
 	@PostMapping("/academia/login")
-	public String login(@Valid Alumno alumno,  /*@Valid Profesor profesor,*/ BindingResult resultado, Model model) {
+	public String login(@Valid Alumno alumno, BindingResult resultado, Model model) {
 		if (resultado.hasErrors()) {
 			Alumno alumnoT = alumnoDao.findByUsuarioAndClave(alumno.getUsuario(), alumno.getClave());
-			
-			//			Profesor profesorT = profesorDao.findByUsuarioAndClave(profesor.getUsuario(), profesor.getClave());
-//			Administrador administradorT = administradorDao.findByUsuarioandClave(administrador.getUsuario(), administrador.getClave());
-//			Curso cursoT = cursoDao.findByNombre(curso.getCurso());
-			
-			if ((alumnoT == null) /*&& (profesorT == null) && administradorT == null*/) {
-				alumnoT = profesorDao.findByUsuarioAndClave(profesor..getUsuario(), profesor.getClave());
-				if ((alumnoT == null)) {
-					return "index";
+			if (alumnoT == null) {
+				Profesor profesorT = profesorDao.findByUsuarioAndClave(alumno.getUsuario(), alumno.getClave());
+				if (profesorT == null) {
+					Administrador administradorT = administradorDao.findByUsuarioAndClave(alumno.getUsuario(),
+							alumno.getClave());
+					if (administradorT == null)
+						return "index";
+					else {
+						model.addAttribute("administrador", administradorT);
+						return "listado-cursos";
+					}
+				} else {
+					model.addAttribute("profesor", profesorT);
+					return "listado-cursos";
 				}
 			} else {
-				model.addAttribute("alumnos", alumnoT);
-	//			model.addAttribute("curso", cursoT);
+				model.addAttribute("alumno", alumnoT);
 				return "listado-cursos";
 			}
 		} else {

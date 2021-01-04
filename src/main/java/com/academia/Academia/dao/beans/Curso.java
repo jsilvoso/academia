@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
@@ -34,6 +35,9 @@ public class Curso {
 	
 	@ManyToMany(mappedBy = "cursos")
 	private List<Alumno> alumnos = new ArrayList<Alumno>();
+	
+	@OneToMany(mappedBy = "curso")
+	private List<EntradaHorario> entradasHorarios = new ArrayList<EntradaHorario>();
 	
 	@Override
 	public boolean equals(Object obj) {

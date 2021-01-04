@@ -38,8 +38,8 @@ public class ProfesorController {
 		}
 
 		profesorDao.save(profesor);
-		model.addAttribute("estudiantes", profesorDao.findAll());
-		return "listado-profesor";
+		model.addAttribute("profedores", profesorDao.findAll());
+		return "listado-cursos";
 	}
 
 	@GetMapping("editar/{id}")

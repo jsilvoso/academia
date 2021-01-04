@@ -2,35 +2,42 @@
 <head>
 </head>
 <body>
-<h2><u>Listado profesores</u></h2>
-	<a th:href="@{/profesor/registro}">Insertar profesor</a>
-	<br>
-	<div th:switch="${profesor}">
-		<h3 th:case="null">No hay profesores</h3>
-		<div th:case="*">
-			<table>
-				<thead>
-					<tr>
-						<td>Id</td>
-						<td>Nombre</td>
-						
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="profesor :${profesor}">
-						<td th:text="${profesor.id}"></td>
-						<td th:text="${profesor.nombre}"></td>
-						<td th:text="${profesor.horario}"></td>
-						<td><a th:href="@{/profesor/editar/{id}(id=${curso.id})}">Actualizar Profesor</a></td>
-						<td><a th:href="@{/profesor/borrar/{id}(id=${curso.id})}">Borrar Profesor</a></td>
-					</tr>
-				</tbody>
-			</table>
+	<span th:if="${administrador}">
+		<h2>
+			<u>Listado profesores</u>
+		</h2> <a th:href="@{/profesor/registro}">Insertar profesor</a> <br>
+		<div th:switch="${profesor}">
+			<h3 th:case="null">No hay profesores</h3>
+			<div th:case="*">
+				<table>
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Nombre</td>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="profesor :${profesor}">
+							<td th:text="${profesor.id}"></td>
+							<td th:text="${profesor.nombre}"></td>
+							<td th:text="${profesor.horario}"></td>
+							<td><a th:href="@{/profesor/editar/{id}(id=${curso.id})}">Actualizar
+									Profesor</a></td>
+							<td><a th:href="@{/profesor/borrar/{id}(id=${curso.id})}">Borrar
+									Profesor</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br>
 		</div>
-		<br>
-	</div>
-<h2><u>Listado cursos</u></h2>
-	<a th:href="@{/curso/registro}">Insertar Curso</a>
+	</span>
+	<h2>
+		<u>Listado cursos</u>
+	</h2>
+	<a th:if="${administrador}" th:href="@{/curso/registro}">Insertar
+		Curso</a>
 	<br>
 	<div th:switch="${curso}">
 		<h3 th:case="null">No hay cursos</h3>
@@ -48,40 +55,45 @@
 						<td th:text="${curso.id}"></td>
 						<td th:text="${curso.nombre}"></td>
 						<td th:text="${curso.horario}"></td>
-						<td><a th:href="@{/curso/editar/{id}(id=${curso.id})}">Actualizar Curso</a></td>
-						<td><a th:href="@{/curso/borrar/{id}(id=${curso.id})}">Borrar Curso</a></td>
+						<td><a th:href="@{/curso/editar/{id}(id=${curso.id})}">Actualizar
+								Curso</a></td>
+						<td><a th:href="@{/curso/borrar/{id}(id=${curso.id})}">Borrar
+								Curso</a></td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-<br>
-	<h2><u>Listado Alumnos</u></h2>
-	<a th:href="@{/alumno/registro}">Insertar Alumno</a>
-	<br>
-	<div th:switch="${alumnos}">
-		<h3 th:case="null">No hay alumnos</h3>
-		<div th:case="*">
-			<table>
-				<thead>
-					<tr>
-						<td>Id</td>
-						<td>Nombre</td>
-						<td>Email</td>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="alumno : ${alumnos}">
-						<td th:text="${alumno.id}"></td>
-						<td th:text="${alumno.nombre}"></td>
-						<td th:text="${alumno.email}"></td>
-						<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar Alumno</a></td>
-						<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar Alumno</a></td>
-					</tr>
-				</tbody>
-			</table>
+	<span th:if="${administrador != null || profesor != null}"> <br>
+		<h2>
+			<u>Listado Alumnos</u>
+		</h2> <a th:if="${administrador}" th:href="@{/alumno/registro}">Insertar Alumno</a> <br>
+		<div th:switch="${alumnos}">
+			<h3 th:case="null">No hay alumnos</h3>
+			<div th:case="*">
+				<table>
+					<thead>
+						<tr>
+							<td>Id</td>
+							<td>Nombre</td>
+							<td>Email</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="alumno : ${alumnos}">
+							<td th:text="${alumno.id}"></td>
+							<td th:text="${alumno.nombre}"></td>
+							<td th:text="${alumno.email}"></td>
+							<td><a th:href="@{/alumno/editar/{id}(id=${alumno.id})}">Actualizar
+									Alumno</a></td>
+							<td><a th:href="@{/alumno/borrar/{id}(id=${alumno.id})}">Borrar
+									Alumno</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
 		</div>
-	</div>
-	
+	</span>
+	<a th:href="@{/index}">Salir</a>
 </body>
 </html>

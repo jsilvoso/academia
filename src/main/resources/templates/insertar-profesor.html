@@ -5,13 +5,20 @@
 	<h2>Insertar profesor</h2>
 	<form action="#" th:action="@{/profesor/insertar}"
 		th:object="${profesor}" method="post">
-		Nombre<input type="text" th:field="*{nombre}" id="nombre"><span
+		Nombre<input type="text" th:field="*{nombre}" id="nombre"> <span
 			th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"
-			style="color: red"></span><br> Email<input type="text"
+			style="color: red"></span> <br> Email<input type="text"
 			th:field="*{email}" id="email"><span
 			th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+			style="color: red"></span><br> Usuario<input type="text"
+			th:field="*{usuario}" id="usuario"><span
+			th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"
+			style="color: red"></span><br> Clave<input type="text"
+			th:field="*{clave}" id="clave"><span
+			th:if="${#fields.hasErrors('clave')}" th:errors="*{clave}"
 			style="color: red"></span><br> <input type="submit"
 			value="Insertar profesor">
 	</form>
+	<a th:href="@{/listado-cursos}">Men&uacute; principal</a>
 </body>
 </html>
